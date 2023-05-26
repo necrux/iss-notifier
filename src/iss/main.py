@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Get information about the ISS and it's current position."""
+"""Get information about the ISS and its current position."""
 
 import argparse
 import sys
@@ -9,7 +9,7 @@ from iss import ISS
 iss = ISS()
 email = Email()
 
-LOGO="""
+LOGO = """
   _____  _____ _____ 
  |_   _|/ ____/ ____|
    | | | (___| (___  
@@ -90,6 +90,7 @@ def main(argv=None) -> int:
         people = iss.people_aboard()
         for person in people:
             print(person)
+        return 0
     else:
         print("Must provide a latitude and longitude.")
         return 1
