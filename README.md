@@ -11,3 +11,10 @@ Get information about the ISS, and its current location. You can also configure 
 
 ## Configure for Email
 ```main.py --configure```
+
+## Configure Email Notifications
+```
+./main.py -t '<LAT>' -g '<LONG>' -n
+```
+
+For best results, configure this as a cron job that runs every minute.
