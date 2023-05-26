@@ -2,7 +2,7 @@
 """Configure and send email notifications."""
 import smtplib
 import configparser
-from os import path
+from os import path, environ
 
 SUBJECT = "Look Up"
 MESSAGE = "The ISS is overhead."
@@ -76,3 +76,13 @@ class Email:
         connection.sendmail(from_addr=email,
                             to_addrs=email,
                             msg=f"Subject:{SUBJECT}\n\n{MESSAGE}")
+
+    @staticmethod
+    def configure_cron(cron):
+        user = environ.get('USERNAME')
+        try:
+            with open(f"/var/spool/cron/crontabs/{user}", "a") as file:
+                file.write(cron)
+        except PermissionError:
+            print(f"\nSorry, unable to write to /var/spool/cron/crontabs/{user}.")
+            print("Try running 'crontab -e' and appending the provided cron.")
