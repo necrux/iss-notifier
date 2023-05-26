@@ -24,14 +24,16 @@ def send_notification(latitude, longitude):
     """Send an email if the ISS is overhead and it is nighttime."""
     if iss.is_iss_overhead(latitude, longitude) and iss.is_night(latitude, longitude):
         email.send_notification()
-    cron = f"* 6-23,0-6 * * * /path/to/iss_notifier --notify --latitude '{latitude}' --longitude '{longitude}'"
+    cron = f"* 6-23,0-6 * * * {sys.argv[0]} --notify --latitude '{latitude}' --longitude '{longitude}'"
     print("For best results configure a cron job to run every minute!")
     print(f"\n      {cron}")
     print("\nThis will configure a cron job to run every minute between the "
-          "hours of 6am and 6pm (server time).")
+          "hours of 6am and 6pm (server time). Make certain you are using "
+          "the absolute path of the program.")
     answer = input("Would you like to configure this cron now? (y/N) ").lower()
     if answer == 'y':
         email.configure_cron(cron)
+
 
 def main(argv=None) -> int:
     """Entrypoint for ISS notifier."""
