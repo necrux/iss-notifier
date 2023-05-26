@@ -9,6 +9,16 @@ from iss import ISS
 iss = ISS()
 email = Email()
 
+LOGO="""
+  _____  _____ _____ 
+ |_   _|/ ____/ ____|
+   | | | (___| (___  
+   | |  \___ \\___  \ 
+  _| |_ ____) |___) |
+ |_____|_____/_____/ 
+                                          
+"""
+
 
 def send_notification(latitude, longitude) -> int:
     """Send an email if the ISS is overhead and it is nighttime."""
@@ -20,6 +30,7 @@ def send_notification(latitude, longitude) -> int:
 
 def main(argv=None) -> int:
     """Entrypoint for ISS notifier."""
+    print(LOGO)
     # Create the parser
     description = 'Check if the ISS is overhead!'
     job_options = argparse.ArgumentParser(description=description)
