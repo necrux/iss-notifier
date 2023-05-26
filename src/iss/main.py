@@ -91,7 +91,7 @@ def main(argv=None) -> int:
         for person in people:
             print(person)
         return 0
-    else:
+    elif not latitude or not longitude:
         print("Must provide a latitude and longitude.")
         return 1
 
